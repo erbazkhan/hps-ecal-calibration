@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# ----- VARIABLES TO SET ------
 DB="/lustre24/expphy/volatile/hallb/hps/ekhan/ws/hps_conditions_ekhan_v4.db"
 GAINS_FILE="/lustre24/expphy/volatile/hallb/hps/ekhan/FEE2019/custom_gains_recon/31976112_gain.txt" # FIRST LINE IS HEADER, FORMAT: channel_id,gain
 RUN_START=10000
@@ -8,7 +9,7 @@ USER="erbaz"
 LOG = "FEE gains x new generated cosmic gains with ADC2V set to 0.244. 4 channels set to 0 (153,198,275,334). 267 has normal value."
 DESCIPTION = $LOG
 NOTES = $LOG
-
+# -----------------------------
 
 
 # Diagnose
