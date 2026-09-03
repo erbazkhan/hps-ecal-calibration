@@ -9,7 +9,6 @@ RUN_START=9000
 RUN_END=10999
 USER="erbaz"
 
-# FIXED: Removed spaces around '='
 LOG="Cosmic gains for 2019. Obtained from runs 9041, 9044, 9046, 9048, 9064, 9108, 9109, 9175, 9179, 10745, 10748, 10749, 10750"
 DESCRIPTION="$LOG"
 NOTES="$LOG"
@@ -21,7 +20,6 @@ ls -la "$DB"
 sqlite3 "$DB" ".tables"
 
 # Insert collection
-# FIXED: Wrapped SQL string variables in single quotes ('$LOG', '$DESCRIPTION')
 COLL_ID=$(sqlite3 "$DB" "INSERT INTO collections (table_name, log, description, created) \
 VALUES ('ecal_gains', '$LOG', '$DESCRIPTION', datetime('now')); \
 SELECT last_insert_rowid();")
@@ -37,8 +35,6 @@ done
 echo "COMMIT;"
 } | sqlite3 "$DB"
 
-# Link to run range — name must be 'ecal_gains' for conditions system to find it
-# FIXED: Wrapped '$NOTES' in single quotes
 sqlite3 "$DB" "INSERT INTO conditions \
 (run_start, run_end, created, created_by, notes, name, table_name, collection_id) \
 VALUES ($RUN_START, $RUN_END, datetime('now'), '$USER', \
