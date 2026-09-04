@@ -24,7 +24,7 @@ conditions DB rather than the central HPS DB.
    reconstructed `.slcio`, iteration by iteration, comparing the FEE peak to MC to
    correct the gains. Repeat feeding each iteration's output gains back in.
 6. Once the FEE iterations are over, we need to correct the
-   uncorrected crystals to bring them corrected and uncorrected crystals on the same scale. Mean of the ratio $\frac{corrected\ gains}{baseline\ gains}$ for all the corrected crystals can be used as the correction factor for the uncorrected crystals.
+   uncorrected crystals to bring them on the same scale as corrected ones. Mean of the ratio $\frac{corrected\ gains}{baseline\ gains}$ for all the corrected crystals can be used as the correction factor for the uncorrected crystals.
 7. **Full reconstruction** — once the final gains (`MeV/ADC`) are uploaded to the DB,
    run a full pass2 reconstruction (`PhysicsRun2019_pass2_recon.lcsim`) with
    `recon/fullRecon_swif.py` (or `recon/fullRecon_and_minidst.py` to also produce
