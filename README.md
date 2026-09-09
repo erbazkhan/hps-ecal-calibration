@@ -8,14 +8,14 @@ Presentation slides can be accessed [here](https://1drv.ms/b/c/eab9941ca5bc5161/
 These scripts drive `hps-java` (`EvioToLcio` / `JobManager`) over 2019 EVIO data,
 either through **swif2** workflows or through parallel jobs on interactive nodes,
 and merge the resulting ROOT histograms with `hadd`. Gains live in a local SQLite
-conditions DB rather than the central HPS DB.
+conditions DB rather than the central HPS DB. Make sure to use this branch of [`HPS-CODE`](https://github.com/erbazkhan/HPS-CODE/tree/ecal_calibration_macros) for all the references below.
 
 ## Pipeline
 
 1. **Cosmic baseline** — `cosmics/doCosmicCalib.csh` runs `CosmicCalibration.lcsim`
    over cosmic runs to produce MIP-signal histogram ROOT files.
 2. The merged histogram
-   file feeds `HPS-CODE/CALIBRATION/COSMIC/getCosmicGain.C`, which fits the per-crystal
+   file feeds [`HPS-CODE/CALIBRATION/COSMIC/getCosmicGain.C`](https://github.com/erbazkhan/HPS-CODE/blob/ecal_calibration_macros/CALIBRATION/COSMIC/getCosmicGain.C), which fits the per-crystal
    MIP peaks and computes the baseline ecal gains.
 3. **Load gains into a DB** — `util_scripts/insertGainsToDB.csh` inserts the
    baseline gains as an `ecal_gains` collection + `conditions` row in the SQLite DB.
@@ -26,8 +26,11 @@ conditions DB rather than the central HPS DB.
    reconstructed `.slcio`, iteration by iteration, comparing the FEE peak to MC to
    correct the gains. Repeat feeding each iteration's output gains back in.
 6. Once the FEE iterations are over, we need to correct the
-   uncorrected crystals to bring them on the same scale as corrected ones. Mean of the ratio $\frac{corrected\ gains}{baseline\ gains}$ for all the corrected crystals can be used as the correction factor for the uncorrected crystals.
-7. **Full reconstruction** — once the final gains (`MeV/ADC`) are uploaded to the DB,
+   uncorrected crystals to bring them on the same scale as corrected ones.
+   Mean of the ratio $\frac{corrected\ gains}{baseline\ gains}$ for all the corrected
+   crystals can be used as the correction factor for the uncorrected crystals. This is
+   done in [`HPS-CODE/CALIBRATION/FEE/fee_cosmic_ratio_and_gain_fix_rowexcl.ipynb`](https://github.com/erbazkhan/HPS-CODE/blob/ecal_calibration_macros/CALIBRATION/FEE/fee_cosmic_ratio_and_gain_fix_rowexcl.ipynb)
+8. **Full reconstruction** — once the final gains (`MeV/ADC`) are uploaded to the DB,
    run a full pass2 reconstruction (`PhysicsRun2019_pass2_recon.lcsim`) with
    `recon/fullRecon_swif.py` (or `recon/fullRecon_and_minidst.py` to also produce
    mini-DSTs). Use this fully reconstructed data to check where the FEE peak E/p
