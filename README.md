@@ -3,7 +3,7 @@
 Batch/production scripts for reproducing the HPS 2019 ECAL gain calibration
 (cosmic + iterative FEE correction). Detailed note documenting the whole process
 can be accessed [here](https://1drv.ms/b/c/eab9941ca5bc5161/IQD3att5aqgqRKZj2mnmLNx3AcpPdTBbOiWz6Wvw-XBRPGA?e=EJLEmC).
-Presentation slides can be accessed [here](https://1drv.ms/b/c/eab9941ca5bc5161/IQAbqbwMu7LmSIavRUhh77VsAWatr6HeJkKQGBocvAhMvVY?e=slCQ1d).
+Presentation slides can be accessed [here](https://indico.slac.stanford.edu/event/10336/contributions/16027/attachments/6815/17052/Ecal%20Gain%20Calibration.pdf).
 
 These scripts drive `hps-java` (`EvioToLcio` / `JobManager`) over 2019 EVIO data,
 either through **swif2** workflows or through parallel jobs on interactive nodes,
@@ -78,8 +78,8 @@ Two ways to run the same FEE-iteration reconstruction:
 
 ## Conventions
 
-- **hps-java:** `hps-distribution-5.2.2-SNAPSHOT` jar; detector
-  `HPS_Physics2019_survey_v4p11_L1L2L3_10615_yaw_0p00317` resolved from a directory
+- **hps-java:** `hps-distribution-5.2.2-SNAPSHOT` jar.
+- **Detector:** `HPS_Physics2019_survey_v4p11_L1L2L3_10615_yaw_0p00317` resolved from a directory
   on the classpath ahead of the jar.
 - **Conditions DB:** local SQLite, pointed at with
   `-Dorg.hps.conditions.url=jdbc:sqlite:...`, staged into each job sandbox as
