@@ -33,7 +33,7 @@ conditions DB rather than the central HPS DB. Make sure to use this branch of [`
 8. **Full reconstruction** — once the final gains (`MeV/ADC`) are uploaded to the DB,
    run a full pass2 reconstruction (`PhysicsRun2019_pass2_recon.lcsim`) with
    `recon/fullRecon_swif.py` (or `recon/fullRecon_and_minidst.py` to also produce
-   mini-DSTs). Use this fully reconstructed data to check where the FEE peak E/p
+   mini-DSTs). Use this fully reconstructed data to test where the FEE peak and E/p
    ratio lands.
 
 ## Directories
