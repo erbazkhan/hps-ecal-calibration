@@ -1,7 +1,8 @@
 # hps-ecal-calibration
 
 Batch/production scripts for reproducing the HPS 2019 ECAL gain calibration
-(cosmic + iterative FEE correction).
+(cosmic + iterative FEE correction). Detailed note documenting the whole process
+can be accessed [here](https://1drv.ms/b/c/eab9941ca5bc5161/IQD3att5aqgqRKZj2mnmLNx3AcpPdTBbOiWz6Wvw-XBRPGA?e=EJLEmC).
 
 These scripts drive `hps-java` (`EvioToLcio` / `JobManager`) over 2019 EVIO data,
 either through **swif2** workflows or through parallel jobs on interactive nodes,
